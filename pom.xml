@@ -7,7 +7,7 @@
   <groupId>dev.emmily</groupId>
   <artifactId>sigma</artifactId>
   <packaging>pom</packaging>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0-SNAPSHOT</version>
 
   <modules>
     <module>api</module>
@@ -18,7 +18,7 @@
     <module>platform/platform-redis</module>
     <module>platform/platform-caffeine</module>
     <module>platform/platform-jdk</module>
-      <module>test-bed</module>
+    <module>test-bed</module>
   </modules>
 
   <properties>
