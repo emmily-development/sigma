@@ -16,6 +16,8 @@
     <module>platform/platform-mongo</module>
     <module>platform/platform-json</module>
     <module>platform/platform-redis</module>
+    <module>platform/platform-caffeine</module>
+    <module>platform/platform-jdk</module>
   </modules>
 
   <properties>
