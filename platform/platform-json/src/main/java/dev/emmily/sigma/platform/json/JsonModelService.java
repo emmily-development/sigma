@@ -2,6 +2,7 @@ package dev.emmily.sigma.platform.json;
 
 import dev.emmily.sigma.api.Model;
 import dev.emmily.sigma.api.codec.ModelCodec;
+import dev.emmily.sigma.api.service.CachedAsyncModelService;
 import dev.emmily.sigma.api.service.ModelService;
 import team.unnamed.reflect.identity.TypeReference;
 
@@ -14,8 +15,11 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class JsonModelService<T extends Model>
+  extends CachedAsyncModelService<T>
   implements ModelService<T> {
   private static final IllegalArgumentException INVALID_METHOD = new IllegalArgumentException(
     "JsonModelService doesn't support query-based operations"
@@ -26,21 +30,31 @@ public class JsonModelService<T extends Model>
   private final TypeReference<T> type;
 
   public JsonModelService(
+    Executor executor,
+    ModelService<T> cacheModelService,
     ModelCodec modelCodec,
     File folder,
     TypeReference<T> type
   ) {
+    super(executor, cacheModelService);
     this.modelCodec = modelCodec;
     this.folder = folder;
+    if (!folder.exists() && !folder.mkdir()) {
+      throw new RuntimeException("Unable to create the container folder for the model type " +
+        type.getTypeName());
+    }
     this.type = type;
   }
 
   public JsonModelService(
+    ModelService<T> cacheModelService,
     ModelCodec modelCodec,
     File folder,
     Class<T> type
   ) {
     this(
+      Executors.newSingleThreadExecutor(),
+      cacheModelService,
       modelCodec,
       folder,
       TypeReference.of(type)

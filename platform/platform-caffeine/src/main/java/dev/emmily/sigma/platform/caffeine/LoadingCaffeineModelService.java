@@ -1,6 +1,9 @@
 package dev.emmily.sigma.platform.caffeine;
 
-import com.github.benmanes.caffeine.cache.*;
+import com.github.benmanes.caffeine.cache.CacheLoader;
+import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.CaffeineSpec;
+import com.github.benmanes.caffeine.cache.LoadingCache;
 import dev.emmily.sigma.api.Model;
 import dev.emmily.sigma.api.service.ModelService;
 

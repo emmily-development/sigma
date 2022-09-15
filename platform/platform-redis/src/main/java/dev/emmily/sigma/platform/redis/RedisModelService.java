@@ -2,6 +2,7 @@ package dev.emmily.sigma.platform.redis;
 
 import dev.emmily.sigma.api.Model;
 import dev.emmily.sigma.api.codec.ModelCodec;
+import dev.emmily.sigma.api.service.AsyncModelService;
 import dev.emmily.sigma.api.service.ModelService;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
@@ -11,8 +12,11 @@ import team.unnamed.reflect.identity.TypeReference;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 public class RedisModelService<T extends Model>
+  extends AsyncModelService<T>
   implements ModelService<T> {
   private static final IllegalArgumentException INVALID_QUERY = new IllegalArgumentException(
     "RedisModelService only accepts queries of type String"
@@ -25,11 +29,14 @@ public class RedisModelService<T extends Model>
   private final int ttl;
 
   public RedisModelService(
+    Executor executor,
     JedisPool jedisPool,
     ModelCodec modelCodec,
     String namespace,
     TypeReference<T> type,
-    int ttl) {
+    int ttl
+  ) {
+    super(executor);
     this.jedisPool = jedisPool;
     this.modelCodec = modelCodec;
     this.namespace = namespace;
@@ -42,15 +49,52 @@ public class RedisModelService<T extends Model>
     JedisPool jedisPool,
     ModelCodec modelCodec,
     String namespace,
+    TypeReference<T> type,
+    int ttl
+  ) {
+    this(
+      Executors.newSingleThreadExecutor(),
+      jedisPool,
+      modelCodec,
+      namespace,
+      type,
+      ttl
+    );
+  }
+
+  public RedisModelService(
+    Executor executor,
+    JedisPool jedisPool,
+    ModelCodec modelCodec,
+    String namespace,
     Class<T> type,
     int ttl
   ) {
-    this.jedisPool = jedisPool;
-    this.modelCodec = modelCodec;
-    this.namespace = namespace;
-    this.type = TypeReference.of(type);
-    this.typeNamespace = type.getName();
-    this.ttl = ttl;
+    this(
+      executor,
+      jedisPool,
+      modelCodec,
+      namespace,
+      TypeReference.of(type),
+      ttl
+    );
+  }
+
+  public RedisModelService(
+    JedisPool jedisPool,
+    ModelCodec modelCodec,
+    String namespace,
+    Class<T> type,
+    int ttl
+  ) {
+    this(
+      Executors.newSingleThreadExecutor(),
+      jedisPool,
+      modelCodec,
+      namespace,
+      TypeReference.of(type),
+      ttl
+    );
   }
 
   @Override

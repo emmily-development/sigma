@@ -6,11 +6,10 @@
     <artifactId>sigma</artifactId>
     <groupId>dev.emmily</groupId>
     <version>0.0.1-SNAPSHOT</version>
-    <relativePath>../../pom.xml</relativePath>
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>sigma-codec-jackson</artifactId>
+  <artifactId>sigma-test-bed</artifactId>
 
   <properties>
     <maven.compiler.source>8</maven.compiler.source>
@@ -22,12 +21,6 @@
       <groupId>dev.emmily</groupId>
       <artifactId>sigma-api</artifactId>
       <version>0.0.1-SNAPSHOT</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>2.13.4</version>
     </dependency>
   </dependencies>
 </project>
