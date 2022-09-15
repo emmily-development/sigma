@@ -1,4 +1,4 @@
-package dev.emmily.sigma.api.service.builtin;
+package dev.emmily.sigma.platform.jdk;
 
 import dev.emmily.sigma.api.Model;
 import dev.emmily.sigma.api.service.ModelService;
