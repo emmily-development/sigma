@@ -158,7 +158,14 @@ public abstract class CachedAsyncModelService<T extends Model>
 
   @Override
   public void deleteCached(String id) {
+    T model = cacheModelService.find(id);
+
+    if (model == null) {
+      return;
+    }
+
     cacheModelService.delete(id);
+    create(model);
   }
 
   /**
@@ -177,7 +184,14 @@ public abstract class CachedAsyncModelService<T extends Model>
 
   @Override
   public void deleteByQueryCached(Object query) {
+    T model = cacheModelService.findByQuery(query);
+
+    if (model == null) {
+      return;
+    }
+
     cacheModelService.deleteByQuery(query);
+    create(model);
   }
 
   /**
@@ -189,7 +203,9 @@ public abstract class CachedAsyncModelService<T extends Model>
 
   @Override
   public void deleteManyCached(List<String> ids) {
+    List<T> models = cacheModelService.findMany(ids);
     cacheModelService.deleteMany(ids);
+    models.forEach(this::create);
   }
 
   /**
@@ -211,7 +227,9 @@ public abstract class CachedAsyncModelService<T extends Model>
     Object query,
     int limit
   ) {
+    List<T> models = cacheModelService.findManyByQuery(query, limit);
     cacheModelService.deleteManyByQuery(query, limit);
+    models.forEach(this::create);
   }
 
   /**
