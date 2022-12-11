@@ -9,12 +9,21 @@
         <module name="platform-mongo" />
         <module name="platform-codec-jackson" />
         <module name="platform-jdk" />
+        <module name="sigma-platform-redis" />
+        <module name="sigma-platform-mongo" />
+        <module name="sigma-platform-jdk" />
+        <module name="sigma-test-bed" />
+        <module name="sigma-codec-gson" />
+        <module name="platform-json" />
+        <module name="sigma-codec-jackson" />
         <module name="test-bed" />
         <module name="platform-codec-gson" />
         <module name="platform-redis" />
+        <module name="sigma-platform-json" />
+        <module name="sigma-platform-caffeine" />
+        <module name="sigma-api" />
         <module name="api" />
         <module name="platform-caffeine" />
-        <module name="platform-json" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
