@@ -39,7 +39,7 @@ public class JsonModelRepository<T extends Model>
     super(executor, cacheModelRepository);
     this.modelCodec = modelCodec;
     this.folder = folder;
-    if (!folder.exists() && !folder.mkdir()) {
+    if (!folder.exists() && !folder.mkdirs()) {
       throw new RuntimeException("Unable to create the container folder for the model type " +
         type.getTypeName());
     }
