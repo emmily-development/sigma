@@ -8,7 +8,10 @@ import java.util.List;
 /**
  * Represents a {@link ModelRepository} linked to
  * another {@link ModelRepository}, which are
- * interdependent.
+ * interdependent. The term <strong>get</strong>
+ * refers to a cache lookup, where the term
+ * <strong>find</strong> refers to a lookup
+ * in the linked repository.
  *
  * @param <T> The type of model held by this
  *           repository.
