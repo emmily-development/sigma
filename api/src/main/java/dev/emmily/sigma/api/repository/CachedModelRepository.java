@@ -26,7 +26,7 @@ public interface CachedModelRepository<T extends Model>
     T model = get(id);
 
     if (model == null) {
-      model = get(id);
+      model = find(id);
     }
 
     return model;
