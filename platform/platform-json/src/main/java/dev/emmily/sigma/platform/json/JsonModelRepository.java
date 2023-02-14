@@ -79,6 +79,7 @@ public class JsonModelRepository<T extends Model>
 
     try (FileWriter writer = new FileWriter(file)) {
       writer.write(modelCodec.serializeAsString(model));
+      writer.flush();
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
