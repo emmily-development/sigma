@@ -12,7 +12,6 @@
         <module name="sigma-platform-redis" />
         <module name="sigma-platform-mongo" />
         <module name="sigma-platform-jdk" />
-        <module name="sigma-test-bed" />
         <module name="sigma-codec-gson" />
         <module name="platform-json" />
         <module name="sigma-codec-jackson" />
@@ -28,6 +27,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="codec-base64" target="8" />
+      <module name="sigma-test-bed" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

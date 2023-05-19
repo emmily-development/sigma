@@ -18,7 +18,6 @@
     <module>platform/platform-redis</module>
     <module>platform/platform-caffeine</module>
     <module>platform/platform-jdk</module>
-    <module>test-bed</module>
   </modules>
 
   <properties>
