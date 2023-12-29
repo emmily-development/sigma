@@ -31,7 +31,7 @@ you can use tools like Maven or Gradle.
   <dependency>
     <groupId>dev.emmily</groupId>
     <artifactId>sigma-api</artifactId>
-    <version>1.1.4-SNAPSHOT</version>
+    <version>2.0.0-SNAPSHOT</version>
   </dependency>
 </dependencies>
 ```
@@ -46,7 +46,7 @@ repositories {
 }
 
 dependencies {
-  implementation("dev.emmily:sigma-api:1.1.4-SNAPSHOT")  
+  implementation("dev.emmily:sigma-api:2.0.0-SNAPSHOT")  
 }
 ```
 
@@ -58,7 +58,7 @@ repositories {
 }
 
 dependencies {
-  implementation 'dev.emmily:sigma-api:1.1.4-SNAPSHOT'
+  implementation 'dev.emmily:sigma-api:2.0.0-SNAPSHOT'
 }
 ```
 
