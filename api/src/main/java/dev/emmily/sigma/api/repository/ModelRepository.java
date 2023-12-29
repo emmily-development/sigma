@@ -20,6 +20,12 @@ import java.util.List;
 public interface ModelRepository<T extends Model> {
   void create(T model);
 
+  boolean exists(String id);
+
+  default boolean exists(T model) {
+    return exists(model.getId());
+  }
+
   T find(String id);
 
   T findByQuery(Object query);

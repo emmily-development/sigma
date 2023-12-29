@@ -109,6 +109,13 @@ public class RedisModelRepository<T extends Model>
   }
 
   @Override
+  public boolean exists(String id) {
+    try (Jedis jedis = jedisPool.getResource()) {
+      return jedis.exists(formatId(id));
+    }
+  }
+
+  @Override
   public T find(String id) {
     try (Jedis jedis = jedisPool.getResource()) {
       String formattedId = formatId(id);

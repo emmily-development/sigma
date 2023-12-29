@@ -40,6 +40,14 @@ public abstract class AsyncModelRepository<T extends Model>
     return runAsync(() -> create(model), executor);
   }
 
+  public CompletableFuture<Boolean> existsAsync(String id) {
+    return supplyAsync(() -> exists(id), executor);
+  }
+
+  public CompletableFuture<Boolean> existsAsync(T model) {
+    return existsAsync(model.getId());
+  }
+
   /**
    * @see #find(String) 
    */

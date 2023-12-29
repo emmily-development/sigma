@@ -20,8 +20,7 @@ import java.util.function.Predicate;
  * {@link Predicate predicates}.
  *
  * @param <T> The type of model held by this
- *           model service.
- * @author emmilydev
+ *           model repository.
  */
 public class MapModelRepository<T extends Model>
   implements ModelRepository<T> {
@@ -41,6 +40,11 @@ public class MapModelRepository<T extends Model>
   @Override
   public void create(T model) {
     modelRegistry.put(model.getId(), model);
+  }
+
+  @Override
+  public boolean exists(String id) {
+    return modelRegistry.containsKey(id);
   }
 
   @Override

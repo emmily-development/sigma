@@ -86,6 +86,11 @@ public class JsonModelRepository<T extends Model>
   }
 
   @Override
+  public boolean exists(String id) {
+    return new File(folder, id + ".json").exists();
+  }
+
+  @Override
   public T find(String id) {
     File file = new File(folder, id + ".json");
 

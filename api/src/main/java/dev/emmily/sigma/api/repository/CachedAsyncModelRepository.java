@@ -44,6 +44,19 @@ public abstract class CachedAsyncModelRepository<T extends Model>
   }
 
   @Override
+  public boolean existsCached(String id) {
+    return cacheModelRepository.exists(id);
+  }
+
+  public CompletableFuture<Boolean> existsCachedAsync(String id) {
+    return supplyAsync(() -> existsCached(id), executor);
+  }
+
+  public CompletableFuture<Boolean> existsCachedAsync(T model) {
+    return existsCachedAsync(model.getId());
+  }
+
+  @Override
   public T get(String id) {
     return cacheModelRepository.find(id);
   }

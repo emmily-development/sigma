@@ -20,6 +20,12 @@ public interface CachedModelRepository<T extends Model>
   extends ModelRepository<T> {
   void cache(T model);
 
+  boolean existsCached(String id);
+
+  default boolean existsCached(T model) {
+    return existsCached(model.getId());
+  }
+
   T get(String id);
 
   default T getOrFind(String id) {

@@ -35,6 +35,11 @@ public class CaffeineModelRepository<T extends Model>
   }
 
   @Override
+  public boolean exists(String id) {
+    return cache.getIfPresent(id) != null;
+  }
+
+  @Override
   public T find(String id) {
     return cache.getIfPresent(id);
   }

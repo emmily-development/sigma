@@ -8,6 +8,7 @@ import dev.emmily.sigma.api.repository.ModelRepository;
 import org.bson.conversions.Bson;
 import org.bson.json.JsonObject;
 
+import java.nio.channels.Pipe;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -61,6 +62,13 @@ public class MongoModelRepository<T extends Model>
       model,
       new ReplaceOptions().upsert(true)
     );
+  }
+
+  @Override
+  public boolean exists(String id) {
+    return mongoCollection
+      .find(eq("_id", id))
+      .first() != null;
   }
 
   @Override
